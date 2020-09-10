@@ -1,5 +1,9 @@
 package com.example.carsensorapp.services.models
 
+data class PrefMasterRootResponseModel (
+    val results: PrefMasterResponseModel
+)
+
 data class PrefMasterResponseModel(
     val api_version: Float,
     val results_available: Int,

@@ -15,7 +15,7 @@ interface ICarsensorAPIService {
         @Query("pref") pref: String,
         @Query("color") color: String,
         @Query("format") format: String = "json"
-    ): Call<SearchCarResponseModel>
+    ): Call<SearchCarRootResponseModel>
 
     @GET("brand/v1/")
     fun getBrandMaster(
@@ -27,11 +27,11 @@ interface ICarsensorAPIService {
     fun getPrefMaster(
         @Query("key") key: String = Constant.API_KEY,
         @Query("format") format: String = "json"
-    ): Call<PrefMasterResponseModel>
+    ): Call<PrefMasterRootResponseModel>
 
     @GET("color/v1/")
     fun getColorMaster(
         @Query("key") key: String = Constant.API_KEY,
         @Query("format") format: String = "json"
-    ): Call<ColorMasterResponseModel>
+    ): Call<ColorMasterRootResponseModel>
 }

@@ -21,13 +21,13 @@ class CarRepository {
         model: String,
         pref: String,
         color: String
-    ): Call<SearchCarResponseModel> = service.getCars(key, brand, model, pref, color, "json")
+    ): Call<SearchCarRootResponseModel> = service.getCars(key, brand, model, pref, color, "json")
 
     suspend fun getBrands(): Call<BrandMasterRootResponseModel> = service.getBrandMaster()
 
-    suspend fun getPrefs(): Call<PrefMasterResponseModel> = service.getPrefMaster()
+    suspend fun getPrefs(): Call<PrefMasterRootResponseModel> = service.getPrefMaster()
 
-    suspend fun getColors(): Call<ColorMasterResponseModel> = service.getColorMaster()
+    suspend fun getColors(): Call<ColorMasterRootResponseModel> = service.getColorMaster()
 
     companion object Factory {
         val instance: CarRepository

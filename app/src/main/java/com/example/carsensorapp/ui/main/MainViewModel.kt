@@ -58,13 +58,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val prefsRequest = _repository.getPrefs();
                 val prefsResponse = prefsRequest.execute()
                 if (prefsResponse.isSuccessful) {
-                    prefLiveData.postValue((prefsResponse.body()?.pref))
+                    prefLiveData.postValue((prefsResponse.body()?.results?.pref))
                 }
 
                 val colorsRequest = _repository.getColors()
                 val colorsResponse = colorsRequest.execute()
                 if (colorsResponse.isSuccessful) {
-                    colorLiveData.postValue(colorsResponse.body()?.color)
+                    colorLiveData.postValue(colorsResponse.body()?.results?.color)
                 }
 
             } catch (ex: Exception) {

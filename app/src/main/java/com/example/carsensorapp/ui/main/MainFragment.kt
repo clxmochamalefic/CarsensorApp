@@ -16,6 +16,8 @@ import com.example.carsensorapp.R
 import com.example.carsensorapp.databinding.MainFragmentBinding
 import com.example.carsensorapp.services.models.UsedCarModel
 import com.example.carsensorapp.ui.adaptors.BrandSpinnerAdapter
+import com.example.carsensorapp.ui.adaptors.ColorSpinnerAdapter
+import com.example.carsensorapp.ui.adaptors.PrefSpinnerAdapter
 import com.example.carsensorapp.ui.adaptors.UsedCarAdapter
 import com.example.carsensorapp.ui.callbacks.UsedCarClickCallback
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -45,13 +47,12 @@ class MainFragment : Fragment() {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
         _binding.apply {
             mainRecyclerviewUsedCarList.adapter = _usedCarAdapter
-            isLoading = false;
+            isLoading = true;
         }
 
         _layoutInflater = inflater
 
         return _binding.root
-        return null
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -62,6 +63,24 @@ class MainFragment : Fragment() {
                 main__spinner_brand.adapter = adapter
             }
         })
+
+        _viewModel.prefLiveData.observe(viewLifecycleOwner, Observer { prefs ->
+            prefs?.let {
+                val adapter = PrefSpinnerAdapter(_layoutInflater, prefs)
+                main__spinner_pref.adapter = adapter
+            }
+        })
+
+        _viewModel.colorLiveData.observe(viewLifecycleOwner, Observer { colors ->
+            colors?.let {
+                val adapter = ColorSpinnerAdapter(_layoutInflater, colors)
+                main__spinner_color.adapter = adapter
+            }
+        })
+
+        _binding.apply {
+            isLoading = false
+        }
     }
 
 }
