@@ -1,14 +1,12 @@
-package com.example.carsensorapp.ui.main
+package com.example.carsensorapp.ui.usedcardetail
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.example.carsensorapp.R
-import com.example.carsensorapp.databinding.UsedCarDetailFragmentBinding
+//import com.example.carsensorapp.databinding.UsedCarDetailFragmentBinding
 
 class UsedCarDetailFragment : Fragment() {
 
@@ -37,7 +35,7 @@ class UsedCarDetailFragment : Fragment() {
 //        ).get(UsedCarDetailViewModel::class.java)
     }
 
-    private lateinit var binding: UsedCarDetailFragmentBinding
+//    private lateinit var binding: UsedCarDetailFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

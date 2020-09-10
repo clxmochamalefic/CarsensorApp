@@ -1,10 +1,7 @@
 package com.example.carsensorapp.services.api
 
 import com.example.carsensorapp.Constant
-import com.example.carsensorapp.services.models.BrandMasterResponseModel
-import com.example.carsensorapp.services.models.ColorMasterResponseModel
-import com.example.carsensorapp.services.models.PrefMasterResponseModel
-import com.example.carsensorapp.services.models.SearchCarResponseModel
+import com.example.carsensorapp.services.models.*
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -24,7 +21,7 @@ interface ICarsensorAPIService {
     fun getBrandMaster(
         @Query("key") key: String = Constant.API_KEY,
         @Query("format") format: String = "json"
-    ): Call<BrandMasterResponseModel>
+    ): Call<BrandMasterRootResponseModel>
 
     @GET("pref/v1/")
     fun getPrefMaster(

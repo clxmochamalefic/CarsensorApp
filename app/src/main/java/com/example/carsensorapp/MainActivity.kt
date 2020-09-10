@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.carsensorapp.services.models.UsedCarModel
 import com.example.carsensorapp.ui.main.MainFragment
-import com.example.carsensorapp.ui.main.UsedCarDetailFragment
+import com.example.carsensorapp.ui.usedcardetail.UsedCarDetailFragment
 
 class MainActivity : AppCompatActivity() {
 

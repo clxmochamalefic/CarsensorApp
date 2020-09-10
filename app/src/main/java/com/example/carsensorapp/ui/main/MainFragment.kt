@@ -15,6 +15,7 @@ import com.example.carsensorapp.MainActivity
 import com.example.carsensorapp.R
 import com.example.carsensorapp.databinding.MainFragmentBinding
 import com.example.carsensorapp.services.models.UsedCarModel
+import com.example.carsensorapp.ui.adaptors.BrandSpinnerAdapter
 import com.example.carsensorapp.ui.adaptors.UsedCarAdapter
 import com.example.carsensorapp.ui.callbacks.UsedCarClickCallback
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -28,6 +29,8 @@ class MainFragment : Fragment() {
     private val _viewModel: MainViewModel by viewModels()
 
     private lateinit var _binding: MainFragmentBinding
+
+    private lateinit var _layoutInflater: LayoutInflater
 
     private val _usedCarAdapter: UsedCarAdapter = UsedCarAdapter(object : UsedCarClickCallback {
         override fun onClick(usedCar: UsedCarModel) {
@@ -45,21 +48,17 @@ class MainFragment : Fragment() {
             isLoading = false;
         }
 
+        _layoutInflater = inflater
+
         return _binding.root
+        return null
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         _viewModel.brandsLiveData.observe(viewLifecycleOwner, Observer { brands ->
             brands?.let {
-                val adapter = context?.let { it1 ->
-                    ArrayAdapter(
-                        it1,
-                        R.id.main__spinner_brand.toInt(),
-                        brands
-                    )
-                }
-                adapter?.setDropDownViewResource(R.id.main__spinner_brand.toInt())
+                val adapter = BrandSpinnerAdapter(_layoutInflater, brands)
                 main__spinner_brand.adapter = adapter
             }
         })

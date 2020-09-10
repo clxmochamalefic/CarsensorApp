@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carsensorapp.R
-import com.example.carsensorapp.databinding.UsedCarDetailFragmentBinding
 import com.example.carsensorapp.databinding.UsedCarListItemBinding
 import com.example.carsensorapp.services.models.UsedCarModel
 import com.example.carsensorapp.ui.callbacks.UsedCarClickCallback

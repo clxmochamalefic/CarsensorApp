@@ -3,21 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.MainFragment"
     >
 
     <data>
+        <import type="android.view.View"/>
         <variable name="isLoading" type="boolean" />
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main"
+        tools:context=".ui.main.MainFragment"
+        >
     <LinearLayout
         android:id="@+id/main__linear_layout_root"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        tools:ignore="PrivateResource"
         >
         <LinearLayout
             android:id="@+id/main__linear_layout_search_area"
@@ -141,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:foregroundGravity="center"
-            app:visibleGone="@{isLoading}"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}"
             >
             <ProgressBar
                 android:layout_width="wrap_content"
@@ -151,4 +155,5 @@
                 />
         </FrameLayout>
     </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

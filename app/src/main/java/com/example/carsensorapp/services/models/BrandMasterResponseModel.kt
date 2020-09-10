@@ -1,5 +1,9 @@
 package com.example.carsensorapp.services.models
 
+data class BrandMasterRootResponseModel (
+    val results: BrandMasterResponseModel
+)
+
 data class BrandMasterResponseModel (
     val api_version: Float,
     val results_available: Int,

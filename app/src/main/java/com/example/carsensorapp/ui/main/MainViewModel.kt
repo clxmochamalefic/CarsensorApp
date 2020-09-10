@@ -52,7 +52,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val brandsRequest = _repository.getBrands()
                 val brandsResponse = brandsRequest.execute()
                 if (brandsResponse.isSuccessful) {
-                    brandsLiveData.postValue(brandsResponse.body()?.brand)
+                    brandsLiveData.postValue(brandsResponse.body()?.results?.brand)
                 }
 
                 val prefsRequest = _repository.getPrefs();

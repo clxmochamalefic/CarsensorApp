@@ -2,10 +2,7 @@ package com.example.carsensorapp.services.repositories
 
 import com.example.carsensorapp.Constant
 import com.example.carsensorapp.services.api.ICarsensorAPIService
-import com.example.carsensorapp.services.models.BrandMasterResponseModel
-import com.example.carsensorapp.services.models.ColorMasterResponseModel
-import com.example.carsensorapp.services.models.PrefMasterResponseModel
-import com.example.carsensorapp.services.models.SearchCarResponseModel
+import com.example.carsensorapp.services.models.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -26,7 +23,7 @@ class CarRepository {
         color: String
     ): Call<SearchCarResponseModel> = service.getCars(key, brand, model, pref, color, "json")
 
-    suspend fun getBrands(): Call<BrandMasterResponseModel> = service.getBrandMaster()
+    suspend fun getBrands(): Call<BrandMasterRootResponseModel> = service.getBrandMaster()
 
     suspend fun getPrefs(): Call<PrefMasterResponseModel> = service.getPrefMaster()
 

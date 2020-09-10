@@ -1,4 +1,4 @@
-package com.example.carsensorapp.ui.main
+package com.example.carsensorapp.ui.usedcardetail
 
 import androidx.lifecycle.ViewModel
 
