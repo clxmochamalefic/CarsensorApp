@@ -1,4 +1,4 @@
-package com.example.carsensorapp.services.api
+package com.example.carsensorapp.services.models
 
 data class CodeNamePair (
     val code: String,

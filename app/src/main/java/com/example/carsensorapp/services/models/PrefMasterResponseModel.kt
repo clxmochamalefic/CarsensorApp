@@ -1,6 +1,4 @@
-package com.example.carsensorapp.services.api.responses
-
-import com.example.carsensorapp.services.api.CodeNamePair
+package com.example.carsensorapp.services.models
 
 data class PrefMasterResponseModel(
     val api_version: Float,

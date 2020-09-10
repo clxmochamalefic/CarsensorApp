@@ -1,13 +1,12 @@
-package com.example.carsensorapp.repositories
+package com.example.carsensorapp.services.repositories
 
 import com.example.carsensorapp.Constant
 import com.example.carsensorapp.services.api.ICarsensorAPIService
-import com.example.carsensorapp.services.api.responses.BrandMasterResponseModel
-import com.example.carsensorapp.services.api.responses.ColorMasterResponseModel
-import com.example.carsensorapp.services.api.responses.PrefMasterResponseModel
-import com.example.carsensorapp.services.api.responses.SearchCarResponseModel
+import com.example.carsensorapp.services.models.BrandMasterResponseModel
+import com.example.carsensorapp.services.models.ColorMasterResponseModel
+import com.example.carsensorapp.services.models.PrefMasterResponseModel
+import com.example.carsensorapp.services.models.SearchCarResponseModel
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 

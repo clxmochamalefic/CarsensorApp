@@ -1,12 +1,11 @@
 package com.example.carsensorapp.services.api
 
 import com.example.carsensorapp.Constant
-import com.example.carsensorapp.services.api.responses.BrandMasterResponseModel
-import com.example.carsensorapp.services.api.responses.ColorMasterResponseModel
-import com.example.carsensorapp.services.api.responses.PrefMasterResponseModel
-import com.example.carsensorapp.services.api.responses.SearchCarResponseModel
+import com.example.carsensorapp.services.models.BrandMasterResponseModel
+import com.example.carsensorapp.services.models.ColorMasterResponseModel
+import com.example.carsensorapp.services.models.PrefMasterResponseModel
+import com.example.carsensorapp.services.models.SearchCarResponseModel
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
