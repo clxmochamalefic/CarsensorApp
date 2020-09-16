@@ -13,7 +13,7 @@ data class BrandMasterResponseModel (
 )
 
 data class BrandModel (
-    val code: String,
-    val name: String,
+    var code: String,
+    var name: String,
     val country: CodeNamePair
 )

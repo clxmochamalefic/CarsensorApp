@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun show(usedCar: UsedCarModel) {
-        val projectFragment = UsedCarDetailFragment.forUsedCar(usedCar.id) //詳細のFragment
+        val projectFragment = UsedCarDetailFragment.forUsedCar(usedCar.model) //詳細のFragment
         supportFragmentManager
             .beginTransaction()
             .addToBackStack("project")

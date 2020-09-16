@@ -1,9 +1,11 @@
 package com.example.carsensorapp.ui.main
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.carsensorapp.Constant
 import com.example.carsensorapp.services.repositories.CarRepository
 import com.example.carsensorapp.services.models.CodeNamePair
 import com.example.carsensorapp.services.models.BrandModel
@@ -23,48 +25,55 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     var colorLiveData: MutableLiveData<List<CodeNamePair>> = MutableLiveData()
 
     init {
-        _loadLiveData()
+        loadLiveData()
     }
 
-    private fun _loadLiveData() {
+    fun fetchUsedCarLiveData(name: String, brandCode: String, prefCode: String, colorCode: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-//                val request = _repository.getCars(
-//                    Constant.API_KEY,
-//                    "AD",
-//                    "A1",
-//                    "13",
-//                    "WT"
-//                )
-//                val request = _repository.getCars(
-//                    Constant.API_KEY,
-//                    "",
-//                    "",
-//                    "",
-//                    ""
-//                )
-//                val response = request.execute()
-//                if (response.isSuccessful) {
-//                    Log.d("MainViewModel", response.body()?.results_returned.toString())
-//                    carsLiveData.postValue(response.body()?.usedcar)
-//                }
+                val request = _repository.getCars(
+                    Constant.API_KEY,
+                    brandCode,
+                    name,
+                    prefCode,
+                    colorCode
+                )
+                val response = request.execute()
+                if (response.isSuccessful) {
+                    carsLiveData.postValue(response.body()?.results?.usedcar)
+                }
+            } catch (ex: Exception) {
+                ex.printStackTrace()
+            }
+        }
+    }
+
+    private fun loadLiveData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
 
                 val brandsRequest = _repository.getBrands()
                 val brandsResponse = brandsRequest.execute()
                 if (brandsResponse.isSuccessful) {
-                    brandsLiveData.postValue(brandsResponse.body()?.results?.brand)
+                    val mutableBrands = brandsResponse.body()?.results?.brand?.toMutableList()
+                    mutableBrands?.add(0, BrandModel("", "< 未選択 >", CodeNamePair("", "")))
+                    brandsLiveData.postValue(mutableBrands)
                 }
 
                 val prefsRequest = _repository.getPrefs();
                 val prefsResponse = prefsRequest.execute()
                 if (prefsResponse.isSuccessful) {
-                    prefLiveData.postValue((prefsResponse.body()?.results?.pref))
+                    val mutablePrefs = prefsResponse.body()?.results?.pref?.toMutableList()
+                    mutablePrefs?.add(0, PrefModel("", "< 未選択 >", CodeNamePair("", "")))
+                    prefLiveData.postValue(mutablePrefs)
                 }
 
                 val colorsRequest = _repository.getColors()
                 val colorsResponse = colorsRequest.execute()
                 if (colorsResponse.isSuccessful) {
-                    colorLiveData.postValue(colorsResponse.body()?.results?.color)
+                    val mutableColors = colorsResponse.body()?.results?.color?.toMutableList()
+                    mutableColors?.add(0, CodeNamePair("", "< 未選択 >"))
+                    colorLiveData.postValue(mutableColors)
                 }
 
             } catch (ex: Exception) {

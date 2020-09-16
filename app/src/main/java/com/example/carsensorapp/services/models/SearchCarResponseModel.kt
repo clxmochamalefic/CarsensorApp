@@ -13,31 +13,37 @@ data class SearchCarResponseModel (
 )
 
 data class UsedCarModel (
-    val id: String,
+//    val id: String,
     val brand: CodeNamePair,
     val model: String,
     val grade: String,
     val price: String,
-    val inspection: String,
-    val maintenance: String,
-    val warranty: String,
-    val recycle: String,
-    val engine: String,
+    val width: Int,
+    val height: Int,
+    val length: Int,
+    val period: String,
+    val person: Int,
+    val series: String,
+//    val inspection: String,
+//    val maintenance: String,
+//    val warranty: String,
+//    val recycle: String,
+//    val engine: String,
     val desc: String,
     val body: CodeNamePair,
-    val odd: String,
-    val year: Int,
-    val shop: ShopModel,
-    val color: String,
-    val maintenance_comment: String,
-    val maintenance_fee: Int,
+//    val odd: String,
+//    val year: Int,
+//    val shop: ShopModel,
+//    val color: String,
+//    val maintenance_comment: String,
+//    val maintenance_fee: Int,
     val photo: PhotoModel,
-    val sub_img: SubImageModel,
-    val urls: UrlsModel,
-    val warranty_comment: String,
-    val warranty_distance: String,
-    val warranty_length: String,
-    val warranty_fee: Int
+//    val sub_img: SubImageModel,
+    val urls: UrlsModel
+//    val warranty_comment: String,
+//    val warranty_distance: String,
+//    val warranty_length: String
+//    val warranty_fee: Int
 )
 
 data class ShopModel (
@@ -49,8 +55,10 @@ data class ShopModel (
 )
 
 data class PhotoModel (
-    val main: PhotoMainModel,
-    val sub: List<String>
+    val main: PhotoMainModel?,
+    val front: PhotoMainModel?,
+    val inpane: PhotoMainModel?,
+    val rear: PhotoMainModel?
 )
 
 data class PhotoMainModel (

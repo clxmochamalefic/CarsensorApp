@@ -11,7 +11,7 @@ interface ICarsensorAPIService {
     fun getCars(
         @Query("key") key: String = Constant.API_KEY,
         @Query("brand") brand: String,
-        @Query("model") model: String,
+        @Query("keyword") model: String,
         @Query("pref") pref: String,
         @Query("color") color: String,
         @Query("format") format: String = "json"
