@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.example.carsensorapp.MainActivity
 import com.example.carsensorapp.R
@@ -37,9 +36,9 @@ class MainFragment : Fragment() {
     private lateinit var _layoutInflater: LayoutInflater
 
     private val _usedCarAdapter: UsedCarAdapter = UsedCarAdapter(object : UsedCarClickCallback {
-        override fun onClick(usedCar: UsedCarModel) {
+        override fun onClick(usedCarModel: UsedCarModel) {
             if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) && activity is MainActivity) {
-                (activity as MainActivity).show(usedCar)
+                (activity as MainActivity).show(usedCarModel)
             }
         }
     })
@@ -58,11 +57,11 @@ class MainFragment : Fragment() {
                     (mainSpinnerColor.selectedItem as CodeNamePair).code
                 )
             }
-            isLoading = true;
+            isLoading = true
         }
 
         _layoutInflater = inflater
-        _binding.isOpen = false;
+        _binding.isOpen = false
 
         return _binding.root
     }

@@ -6,4 +6,15 @@
     <string name="open">開く</string>
     <string name="close">閉じる</string>
     <string name="yen">円</string>
+    <string name="brand">ブランド</string>
+    <string name="model">モデル</string>
+    <string name="grade">グレード</string>
+    <string name="price">価格</string>
+    <string name="car_width">全幅</string>
+    <string name="car_height">全高</string>
+    <string name="car_length">全長</string>
+    <string name="period">販売期間</string>
+    <string name="series">形式</string>
+    <string name="body_type">ボディタイプ</string>
+    <string name="url">URL</string>
 </resources>

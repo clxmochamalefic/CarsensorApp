@@ -2,6 +2,7 @@ package com.example.carsensorapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.carsensorapp.services.models.UsedCarDetailModel
 import com.example.carsensorapp.services.models.UsedCarModel
 import com.example.carsensorapp.ui.main.MainFragment
 import com.example.carsensorapp.ui.usedcardetail.UsedCarDetailFragment
@@ -22,11 +23,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun show(usedCar: UsedCarModel) {
-        val projectFragment = UsedCarDetailFragment.forUsedCar(usedCar.model) //詳細のFragment
+        //詳細のFragment
+        val usedCarDetailModel = UsedCarDetailModel(
+            usedCar.brand.name,
+            usedCar.model,
+            usedCar.grade,
+            usedCar.price,
+            usedCar.width,
+            usedCar.height,
+            usedCar.length,
+            usedCar.period,
+            usedCar.person,
+            usedCar.series,
+            usedCar.desc,
+            usedCar.body.name,
+            usedCar.photo.main.l,
+            usedCar.urls.mobile
+        )
+        val usedCarDetailFragment = UsedCarDetailFragment.forUsedCar(usedCarDetailModel)
         supportFragmentManager
             .beginTransaction()
             .addToBackStack("project")
-            .replace(R.id.container, projectFragment, null)
+            .replace(R.id.container, usedCarDetailFragment, null)
             .commit()
     }
 

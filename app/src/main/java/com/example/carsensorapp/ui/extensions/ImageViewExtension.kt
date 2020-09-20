@@ -8,10 +8,11 @@ class ImageViewExtension {
     companion object {
         @JvmStatic
         @BindingAdapter("imageUrl")
-//        fun loadImage(view: ImageView, imageUrl: String) {
-//            Glide.with(view).load("http://goo.gl/gEgYUd").into(view)
-//        }
-        fun ImageView.loadImage(imageUrl: String) {
+        fun ImageView.loadImage(imageUrl: String?) {
+            if (imageUrl == null) {
+                return
+            }
+
             Glide.with(this).load(imageUrl).into(this)
         }
     }
