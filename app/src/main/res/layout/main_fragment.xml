@@ -9,6 +9,7 @@
         <import type="android.view.View"/>
         <variable name="isOpen" type="boolean" />
         <variable name="isLoading" type="boolean" />
+        <variable name="fragment" type="com.example.carsensorapp.ui.main.MainFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,16 +48,31 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         />
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="中古車名"
-                        android:layout_margin="10dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
+                        >
+                        <TextView
+                            android:id="@+id/main__textview_used_car_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="中古車名"
+                            android:layout_margin="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            />
+                        <ImageButton
+                            android:id="@+id/main__imagebutton_carsensor_logo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:src="@drawable/carsensor_logo"
+                            android:onClick="@{fragment.onCarSensorIconClickListener}"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                     <EditText
                         android:id="@+id/main__edittext_used_car_name"
                         android:layout_width="match_parent"

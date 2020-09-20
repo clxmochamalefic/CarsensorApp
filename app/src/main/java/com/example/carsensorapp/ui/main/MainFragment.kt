@@ -1,17 +1,22 @@
 package com.example.carsensorapp.ui.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import com.example.carsensorapp.Constant
 import com.example.carsensorapp.MainActivity
 import com.example.carsensorapp.R
 import com.example.carsensorapp.databinding.MainFragmentBinding
+import com.example.carsensorapp.generated.callback.OnClickListener
 import com.example.carsensorapp.services.models.BrandModel
 import com.example.carsensorapp.services.models.CodeNamePair
 import com.example.carsensorapp.services.models.PrefModel
@@ -42,6 +47,12 @@ class MainFragment : Fragment() {
             }
         }
     })
+
+    var onCarSensorIconClickListener = View.OnClickListener {
+        val uriUrl = Uri.parse(Constant.CARSENSOR_URL);
+        val webView = Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(webView);
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -98,8 +109,10 @@ class MainFragment : Fragment() {
             }
         })
 
+        val self = this
         _binding.run {
             isLoading = true
+            fragment = self
         }
     }
 
