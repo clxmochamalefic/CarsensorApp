@@ -1499,6 +1499,459 @@ class ImageViewExtension {
 
 ---
 
+## 2つめのビューの作成
+
+- 次の順序で作成していきます
+  - View(xml)の作成
+  - ViewModelの作成
+  - View(Fragment)の作成
+  - Activityの修正
+
+---
+
+## 2つめのビューの作成
+
+- まずView(xml+Fragment)/ViewModelを作成します
+
+![View/ViewModel作成](./img/4-0.png)
+
+---
+
+## 2つめのビューの作成
+
+- まずView(xml+Fragment)/ViewModelを作成します
+
+![View/ViewModel作成](./img/4-1.png)
+
+---
+
+## 2つめのビューの作成
+
+- まずView(xml+Fragment)/ViewModelを作成します
+  - こうなってればOKです
+
+![View/ViewModel作成](./img/4-2.png)
+
+---
+
+## 2つめのビューの作成
+
+### Viewの作成
+
+- これも配布します。。。
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable name="vm" type="com.example.carsensorapp.ui.usedcardetail.UsedCarDetailViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.usedcardetail.UsedCarDetailFragment"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{vm.usedCar.photoLargeUrl}"
+                />
+        </LinearLayout>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            >
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/brand"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.brandName}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/model"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.model}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/grade"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.grade}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/price"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.8"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.usedCar.price}"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/yen"
+                        />
+                </LinearLayout>
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/car_width"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.width.toString()}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/car_height"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.height.toString()}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/car_length"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.length.toString()}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/period"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.period}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/series"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.series}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/body_type"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:text="@{vm.usedCar.bodyName}"
+                    />
+            </TableRow>
+            <TableRow
+                android:weightSum="2"
+                android:background="@drawable/border_table"
+                >
+                <TextView
+                    android:layout_weight="0.2"
+                    android:text="@string/url"
+                    />
+                <TextView
+                    android:layout_weight="1.8"
+                    android:autoLink="web"
+                    android:text="@{vm.usedCar.mobileUrl}"
+                    />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+</layout>
+```
+
+---
+
+## 2つめのビューの作成
+
+### ViewModelの作成
+
+```kotlin
+class UsedCarDetailViewModel(
+    private val myApplication: Application,
+    private val usedCarDetailModel: UsedCarDetailModel
+) : AndroidViewModel(myApplication) {
+
+    val usedCarLiveData: MutableLiveData<UsedCarDetailModel> = MutableLiveData()
+
+    var usedCar = ObservableField<UsedCarDetailModel>()
+
+    init {
+        viewModelScope.launch {
+            usedCarLiveData.postValue(usedCarDetailModel)
+        }
+    }
+
+    fun setUsedCarDetailModel(model: UsedCarDetailModel)
+    {
+        usedCar.set(model);
+    }
+
+    // class Factory
+}
+```
+
+---
+
+## 2つめのビューの作成
+
+### ViewModelの作成
+
+```kotlin
+class UsedCarDetailViewModel(
+    private val myApplication: Application,
+    private val usedCarDetailModel: UsedCarDetailModel
+) : AndroidViewModel(myApplication) {
+    // :
+    // :
+    class Factory(
+        private val application: Application,
+        private val usedCarDetailModel: UsedCarDetailModel
+    ) : ViewModelProvider.NewInstanceFactory() {
+        @Suppress("UNCHECKD_CAST")
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return UsedCarDetailViewModel(application, usedCarDetailModel) as T
+        }
+    }
+}
+```
+
+---
+
+## 2つめのビューの作成
+
+### View(Fragment)の作成
+
+- ActivityからコールされてFragmentを作成するロジック
+  - `arguments` で呼び出し元から引数を受け取っている
+    - `arguments` はまた後で登場します
+
+```kotlin
+companion object {
+    const val KEY = "UsedCarDetailModel"
+    fun forUsedCar(model: UsedCarDetailModel) = UsedCarDetailFragment().apply {
+        arguments = Bundle().apply {
+            putParcelable(KEY, model)
+        }
+    }
+}
+```
+
+---
+
+## 2つめのビューの作成
+
+### View(Fragment)の作成
+
+- ViewModelなどの初期化ロジック
+  - View内に先ほど渡されたモデルを持っておきます
+  - ViewModelの作成の仕方を定義してあるので、それを使用します
+
+```kotlin
+private val usedCarDetailModel by lazy {
+    requireNotNull(
+        arguments?.getParcelable<UsedCarDetailModel>(KEY)
+    )
+}
+
+private val viewModel: UsedCarDetailViewModel by lazy {
+    ViewModelProvider(
+        this,
+        UsedCarDetailViewModel.Factory(
+            requireActivity().application,
+            usedCarDetailModel
+        )
+    ).get(UsedCarDetailViewModel::class.java)
+}
+```
+
+---
+
+## 2つめのビューの作成
+
+### View(Fragment)の作成
+
+- Fragmentの初期化ロジック
+  - bindingの情報を保持しておき
+  - onCreateViewでは `binding.root` を、 `MainFragment` 同様に返します
+
+```kotlin
+private lateinit var binding: UsedCarDetailFragmentBinding
+
+override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+): View? {
+    binding = DataBindingUtil.inflate(inflater, R.layout.used_car_detail_fragment, container, false)
+    return binding.root
+}
+```
+
+---
+
+## 2つめのビューの作成
+
+### View(Fragment)の作成
+
+- Fragmentの初期化ロジック(その2)
+  - `binding.apply { ... }` でbindingのvmをセットしてあげます
+  - `MainFragment` 同様に `LiveData` の更新を Observe し、更新があればその内容を ViewModel に再度渡してあげるようにします
+
+```kotlin
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    binding.apply {
+        vm = viewModel
+    }
+
+    viewModel.usedCarLiveData.observe(viewLifecycleOwner, Observer { usedCar ->
+        usedCar.let {
+            viewModel.setUsedCarDetailModel(it)
+        }
+    })
+}
+```
+
+---
+
+## 2つめのビューの作成
+
+### Activityの修正
+
+- `MainActivity` に以下を追加してあげます
+
+```kotlin
+fun show(usedCar: UsedCarModel) {
+    //詳細のFragment
+    val usedCarDetailModel = com.example.mycarsensorapp.models.UsedCarDetailModel(
+        usedCar.brand.name, usedCar.model,
+        usedCar.grade, usedCar.price,
+        usedCar.width, usedCar.height,
+        usedCar.length, usedCar.period,
+        usedCar.person, usedCar.series,
+        usedCar.desc, usedCar.body.name,
+        usedCar.photo.main.l, usedCar.urls.mobile
+    )
+    val usedCarDetailFragment = UsedCarDetailFragment.forUsedCar(usedCarDetailModel)
+    supportFragmentManager
+        .beginTransaction()
+        .addToBackStack("project")
+        .replace(R.id.container, usedCarDetailFragment, null)
+        .commit()
+}
+```
+
+---
+
+## 2つめのビューの作成
+
+### Activityの修正
+
+- 最後に、 `MainFragment` の `UsedCarAdapter` に指定しているクリックイベントの内容を変更してやればOKです
+
+```kotlin
+  private val usedCarRecyclerViewAdapter = UsedCarAdapter(object : UsedCarClickCallback {
+      override fun onClick(usedCarModel: UsedCarModel) {
+          if (lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED) && activity is MainActivity) {
+              (activity as MainActivity).show(usedCarModel)
+          }
+      }
+  })
+```
+
+---
+
+## 2つめのビューの作成
+
+- リストをタップしてこんな画面が出れば完成です！
+
+![完成](./img/4-3.png)
+
+---
+
+## 完成！
+
+- お疲れ様でした！
+- やったぜ！
+
+---
+
 ## 参考資料等
 
 ---
