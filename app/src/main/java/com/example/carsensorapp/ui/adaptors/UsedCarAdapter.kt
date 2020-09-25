@@ -35,14 +35,14 @@ class UsedCarAdapter(
                 }
 
                 override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-                    val oldList = this@UsedCarAdapter._usedCars
-                    return oldList?.get(oldItemPosition)?.model == usedCars[newItemPosition].model
+                    val old = this@UsedCarAdapter._usedCars
+                    return old?.get(oldItemPosition)?.model == usedCars[newItemPosition].model
                 }
 
                 override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
                     val old = this@UsedCarAdapter._usedCars!![oldItemPosition]
                     val new = this@UsedCarAdapter._usedCars!![newItemPosition]
-                    return old.model == new.model
+                    return old.model.contentEquals(new.model)
                 }
             })
             this._usedCars = usedCars
