@@ -1,9 +1,12 @@
 ---
-theme : "white"
+customTheme : "my-theme"
 transition : "default"
 ---
+
 # ![いきなりコトリン_and_MVVM_and_DataBinding](./img/title.jpg)
-#### VMT開発部　赤倉 奈緒
+#### 2020/09/26 (SAT)
+#### VMT Develop-Depratment
+#### Nao Akakura
 
 ---
 
@@ -18,11 +21,11 @@ transition : "default"
 
 ---
 
-## この勉強会でやってほしいこと
+## この勉強会のゴール
 
-- Kotlinちょっとでも覚える
-- `MVVM` アーキテクチャに触れる
-- ついでにAndroidの `DataBinding` と `ViewBinding` にも触れてみる
+- Kotlin **ちょっとでも** 覚える
+- `MVVM` アーキテクチャを少しでも理解する
+- `DataBinding` / `ViewBinding` の便利さを体感する
 
 ---
 
@@ -55,19 +58,19 @@ transition : "default"
 
 ## 用意するもの
 
-### AndroidStudioが動くPC 
+### `AndroidStudio`が動くPC 
 
 - macOSでも
 - Windowsでも
 - お好きなLinuxでも
-- AndroidStudioが動けばなんでもいいです
+- `AndroidStudio`が動けばなんでもいいです
 - `AVD Manager` も動ける環境が好ましいです(OR 実機でデバッグだ)
 
 ---
 
 ## 用意するもの
 
-### AndroidStudio
+### `AndroidStudio`
 
 - `AVD Manager` でデバッグ用のエミュレートマシンも用意しておくとGOODですね！
 
@@ -479,6 +482,13 @@ kapt "com.android.databinding:compiler:3.1.4"
   - `componentN()` メソッド：宣言した順番でプロパティを取り出すことができるメソッド
   - `copy()` メソッド：完全に別のインスタンスとして、そのオブジェクトと全く同じオブジェクトを作成するメソッド
 
+---
+
+## API通信インターフェース (`Repository`) の作成
+
+- 定数クラスを作成する
+
+![定数クラス作成](./img/2-1a.png)
 
 ---
 
@@ -1048,11 +1058,9 @@ override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
 ### 検索結果リストの実装
 
 - xmlの中身はこのように定義しておきます
-  - onClickのコールバック呼び出しや
-  - `app:imageUrl` のようなところで直接モデルの中身を参照させているのがポイント
+  - モデルの中身やコールバックを直接指定しているところがポイント
 
 ```xml
-    <!-- : -->
     <!-- : -->
         <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -1073,7 +1081,6 @@ override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                 android:layout_margin="5dp"
                 app:imageUrl="@{usedCar.photo.main.l}"
                 />
-    <!-- : -->
     <!-- : -->
 </layout>
 ```
@@ -1237,6 +1244,14 @@ val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
 - `areContentsTheSame`
   - 現在のリストと新しいリストの各オブジェクト(index指定有り)の実際のプロパティの値を比較して同一かどうかを返します
 
+---
+
+## View/ViewModel の作成
+
+### 検索結果リストの実装
+
+#### UsedCarAdapterの解説
+
 ```kotlin
 val result = DiffUtil.calculateDiff(object : DiffUtil.Callback() {
     // :
@@ -1283,6 +1298,14 @@ result.dispatchUpdatesTo(this)
   - callback関数をセットしてやる(後述する自作ClickListener)
   - 後述する `UsedCarViewHolder` のインスタンスを返すようにします
 
+---
+
+## View/ViewModel の作成
+
+### 検索結果リストの実装
+
+#### UsedCarAdapterの解説
+
 ```kotlin
 override fun onCreateViewHolder(parent: ViewGroup, viewtype: Int): UsedCarViewHolder {
     val binding =
@@ -1311,16 +1334,27 @@ override fun onCreateViewHolder(parent: ViewGroup, viewtype: Int): UsedCarViewHo
   - RecyclerViewのライフサイクルメソッドのひとつです
   - RecyclerViewの各アイテムの描画更新を担います
   - xml側でインスタンスの内容の描画指定を行っているので、ここでは `UsedCarModel` のインスタンスを渡すだけにします
-- `getItemCount()`
-  - RecyclerViewのライフサイクルメソッドのひとつです
-  - 現在のリストのサイズを返してやればOK
 
 ```kotlin
 override fun onBindViewHolder(holder: UsedCarViewHolder, position: Int) {
     holder.binding.usedCar = _usedCars?.get(position)
     holder.binding.executePendingBindings()
 }
+```
 
+---
+
+## View/ViewModel の作成
+
+### 検索結果リストの実装
+
+#### UsedCarAdapterの解説
+
+- `getItemCount()`
+  - RecyclerViewのライフサイクルメソッドのひとつです
+  - 現在のリストのサイズを返してやればOK
+
+```kotlin
 override fun getItemCount(): Int {
     return _usedCars?.size ?: 0
 }
